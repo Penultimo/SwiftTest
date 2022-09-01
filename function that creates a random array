@@ -1,0 +1,34 @@
+import UIKit
+import Darwin
+
+/// a function, that creates a random Int array by using generator
+
+func randomArray(size: Int, maxNumber: Int) -> [Int] {
+  var result: [Int] = []
+    for _ in 1...size {
+    result.append(Int.random(in: 0...maxNumber))
+  }
+  return result
+}
+
+let myArray = randomArray(size: 10, maxNumber: 1000)
+print(myArray)
+
+/// creates function, that creates a random Int array by using other function
+
+func randomArray1(size: Int, using generator: () -> Int) -> [Int] {
+  var result = [Int]()
+  
+  for _ in 0...size {
+    let newNumber = generator()
+    result.append(newNumber)
+  }
+    return result
+}
+
+func generatedNumber() -> Int {
+  Int.random(in: 0...40)
+}
+
+let myNewArray = randomArray1(size: 20, using: generatedNumber)
+print(myNewArray)
